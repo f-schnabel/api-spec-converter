@@ -22,6 +22,7 @@ npm-debug.log
 webpack.records.json
 
 # Angular #
+.angular/
 *.ngfactory.ts
 *.css.shim.ts
 *.ngsummary.json

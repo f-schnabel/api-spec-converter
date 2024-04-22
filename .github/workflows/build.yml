@@ -16,4 +16,4 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
-      - run: cd web && npm ci --legacy-peer-deps && npm run build --legacy-peer-deps
+      - run: cd web && npm ci && npm run build
