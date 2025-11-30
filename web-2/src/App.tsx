@@ -9,7 +9,7 @@ import {
   PipelineId
 } from 'amf-client-js'
 
-type Format = 'RAML 1.0' | 'OAS 2.0' | 'OAS 3.0';
+type Format = 'RAML 0.8' | 'RAML 1.0' | 'OAS 2.0' | 'OAS 3.0';
 type InputMode = 'url' | 'content';
 
 function App() {
@@ -20,9 +20,12 @@ function App() {
   const [output, setOutput] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  //amf.plugins.enablePlugins()
 
   const getClient = (format: Format): AMFBaseUnitClient => {
     switch (format) {
+      case 'RAML 0.8':
+        return RAMLConfiguration.RAML08().baseUnitClient()
       case 'RAML 1.0':
         return RAMLConfiguration.RAML10().baseUnitClient()
       case 'OAS 2.0':
@@ -69,7 +72,7 @@ function App() {
       }
 
       // Transform to output format
-      const transformResult: AMFResult = await outputClient.transform(
+      const transformResult: AMFResult = outputClient.transform(
         baseUnit,
         PipelineId.Compatibility
       )
@@ -85,6 +88,7 @@ function App() {
       
       setOutput(rendered)
     } catch (err) {
+      console.error('Conversion error:', err)
       setError(`Conversion error: ${err instanceof Error ? err.message : String(err)}`)
     } finally {
       setLoading(false)
@@ -103,6 +107,7 @@ function App() {
                 value={inputFormat} 
                 onChange={(e) => setInputFormat(e.target.value as Format)}
               >
+                <option value="RAML 0.8">RAML 0.8</option>
                 <option value="RAML 1.0">RAML 1.0</option>
                 <option value="OAS 2.0">OAS 2.0 (Swagger)</option>
                 <option value="OAS 3.0">OAS 3.0 (OpenAPI)</option>
@@ -114,6 +119,7 @@ function App() {
                 value={outputFormat} 
                 onChange={(e) => setOutputFormat(e.target.value as Format)}
               >
+                <option value="RAML 0.8">RAML 0.8</option>
                 <option value="RAML 1.0">RAML 1.0</option>
                 <option value="OAS 2.0">OAS 2.0 (Swagger)</option>
                 <option value="OAS 3.0">OAS 3.0 (OpenAPI)</option>
