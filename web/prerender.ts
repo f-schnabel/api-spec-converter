@@ -11,10 +11,8 @@ enableProdMode();
 
 // Express Engine
 import { ngExpressEngine } from '@nguniversal/express-engine';
-// Import module map for lazy loading
-import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
-import { renderModuleFactory } from '@angular/platform-server';
+import { renderModule } from '@angular/platform-server';
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main.bundle');
@@ -44,11 +42,11 @@ PATHS.forEach(function (route) {
     });
 
   // Writes rendered HTML to index.html, replacing the file if it already exists.
-  prom = prom.then(_ => renderModuleFactory(AppServerModuleNgFactory, {
+  prom = prom.then(_ => renderModule(AppServerModuleNgFactory, {
     document: index,
     url: route,
     extraProviders: [
-      provideModuleMap(LAZY_MODULE_MAP)
+      LAZY_MODULE_MAP
     ]
   })).then(html => writeFileSync(join(BROWSER_FOLDER, route, 'index.html'), html));
 });
