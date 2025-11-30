@@ -2,7 +2,6 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import {APP_BASE_HREF} from '@angular/common';
 
 import { AppComponent }       from './app.component';
@@ -13,11 +12,12 @@ import {SpecConverterComponent} from './spec-converter/spec-converter.component'
 import {PlatformService} from './services/platform.service';
 
 import { environment } from '../environments/environment';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
-    HttpModule,
+    HttpClientModule,
     FormsModule,
   ],
   providers: [
