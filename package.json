@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lucybot/api-spec-converter.git"
+    "url": "https://github.com/f-schnabel/api-spec-converter.git"
   },
   "keywords": [
     "API",
@@ -32,13 +32,14 @@
   ],
   "contributors": [
     "Bobby Brennan <bobby@lucybot.com> (https://lucybot.com)",
-    "Ivan Goncharov <ivan.goncharov.ua@gmail.com> (http://apis.guru)"
+    "Ivan Goncharov <ivan.goncharov.ua@gmail.com> (http://apis.guru)",
+    "Felix Schnabel <fschnabel007@gmail.com>"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lucybot/api-spec-converter/issues"
+    "url": "https://github.com/f-schnabel/api-spec-converter/issues"
   },
-  "homepage": "https://github.com/lucybot/api-spec-converter",
+  "homepage": "https://github.com/f-schnabel/api-spec-converter",
   "bin": {
     "api-spec-converter": "./bin/api-spec-converter"
   },
